@@ -1,0 +1,26 @@
+name: ci
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  build_linux:
+    runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/jhnc-oss/yocto-image/yocto:latest
+      options: --user root
+    name: "Build"
+    steps:
+      - uses: actions/checkout@master
+      - name: Setup
+        run: |
+          echo "$HOME/.local/bin" >> $GITHUB_PATH
+          pip install -r requirements.txt
+          git clone git://git.yoctoproject.org/poky --depth 1 --branch dunfell-23.0.9 /opt/yocto/poky
+      - name: Build
+        run: |
+          source poky/oe-init-build-env
+          bitbake -p zlib
+        shell: sudo -u yocto bash --noprofile --norc -eo pipefail {0}
+        working-directory: /opt/yocto
