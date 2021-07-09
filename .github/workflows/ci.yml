@@ -17,10 +17,12 @@ jobs:
         run: |
           echo "$HOME/.local/bin" >> $GITHUB_PATH
           pip install -r requirements.txt
-          git clone git://git.yoctoproject.org/poky --depth 1 --branch dunfell-23.0.9 /opt/yocto/poky
       - name: Build
         run: |
+          repo init -u git://github.com/jhnc-oss/yocto-manifests.git -b main
+          repo sync
           source poky/oe-init-build-env
           bitbake -p zlib
         shell: sudo -u yocto bash --noprofile --norc -eo pipefail {0}
         working-directory: /opt/yocto
+
