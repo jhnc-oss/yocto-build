@@ -19,7 +19,7 @@ jobs:
           pip install -r requirements.txt
       - name: Build
         run: |
-          repo init -u git://github.com/jhnc-oss/yocto-manifests.git -b main
+          repo init -u git://github.com/jhnc-oss/yocto-manifests.git -b dunfell-23.0.9
           repo sync
           source poky/oe-init-build-env
           bitbake -p zlib
