@@ -17,10 +17,14 @@ jobs:
         run: |
           echo "$HOME/.local/bin" >> $GITHUB_PATH
           pip install -r requirements.txt
-      - name: Build
+      - name: Synchronize Repositories
         run: |
           repo init -u git://github.com/jhnc-oss/yocto-manifests.git -b dunfell-23.0.9
           repo sync
+        shell: sudo -u yocto bash --noprofile --norc -eo pipefail {0}
+        working-directory: /opt/yocto
+      - name: Build
+        run: |
           source poky/oe-init-build-env
           bitbake -p zlib
         shell: sudo -u yocto bash --noprofile --norc -eo pipefail {0}

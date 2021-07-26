@@ -11,6 +11,7 @@ podman run \
   --user "${YOCTO_USER}" \
   --workdir "${YOCTO_WORKDIR}" \
   -v "${PWD}"/dev:"${YOCTO_WORKDIR}"/dev \
+  --env TEMPLATECONF="${YOCTO_WORKDIR}"/meta-protos/conf/templates \
   ghcr.io/jhnc-oss/yocto-image/yocto:latest \
   bash -c 'dev/init_env.sh'
 
