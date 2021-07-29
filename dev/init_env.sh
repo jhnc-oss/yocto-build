@@ -1,8 +1,10 @@
 #!/usr/bin/env bash
 
-PATH="$HOME/.local/bin:$PATH"
+set -o errexit
+
 MANIFEST_BRANCH="dunfell-23.0.9"
 MANIFEST_URL="https://github.com/jhnc-oss/yocto-manifests.git"
+PATH="$HOME/.local/bin:$PATH"
 
 cat > "$HOME/.gitconfig" <<EOF
 [color]
