@@ -16,7 +16,10 @@ Therefore, change your run user's primary group accordingly:
 sudo usermod -g 4040 $(whoami)
 ```
 Though, you will be better equipped to create a dedicated run user with
-primary group id set to 4040.
+primary group id set to 4040, e.g.:
+```
+sudo useradd yocto -g 4040
+```
 
 ## Bootstrapping the Yocto Build Container
 Run the following commands to set up the build container environment:
@@ -38,9 +41,11 @@ container-storage setting driver to "overlay" by default.
 Try  switching to "vfs" using the following user-specific configuration
 snippet:
 ```
-$ cat ~/.config/containers/storage.conf
+mkdir -p ~/.config/containers
+cat > ~/.config/containers/storage.conf <<EOF
 [storage]
 driver = "vfs"
+EOF
 ```
 For further details please refer to containers-storage.conf(5).
 
