@@ -24,13 +24,18 @@ sudo useradd yocto -g 4040
 ## Bootstrapping the Yocto Build Container
 Run the following commands to set up the build container environment:
 ```
-$ git clone https://github.com/jhnc-oss/yocto-build.git 
+$ git clone https://github.com/jhnc-oss/yocto-build.git
 $ cd yocto-build
 $ ./dev/bootstrap.sh
 ```
 
 ## Known Issues
-You may face issues with SELinux being enabled during builds resulting in
+There are known issues running the build container on systems with enabled SELinux in Enforcing mode. If you get permission errors try to set SELinux mode to permissive by running:
+```
+sudo setenforce 0
+```
+
+You may face further issues with SELinux being enabled during builds resulting in
 errors such as:
 ```
 Command 'cp -afl --preserve=xattr ...' failed
@@ -47,5 +52,16 @@ cat > ~/.config/containers/storage.conf <<EOF
 driver = "vfs"
 EOF
 ```
+
+After changing the driver setting when running podman you may face errors such as:
+```
+ERRO[0000] User-selected graph driver "vfs" overwritten by graph driver "overlay" from database - delete libpod local files to resolve
+```
+
+In this case, you have to reset your database, e.g. by running:
+```
+(sudo) rm -rf ~/.local/share/containers
+```
+
 For further details please refer to containers-storage.conf(5).
 
