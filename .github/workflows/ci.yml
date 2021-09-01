@@ -12,7 +12,7 @@ jobs:
       options: --user root
     name: "Build"
     steps:
-      - uses: actions/checkout@master
+      - uses: actions/checkout@main
       - name: Setup
         run: |
           echo "$HOME/.local/bin" >> $GITHUB_PATH
