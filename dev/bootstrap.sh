@@ -4,11 +4,13 @@ set -o errexit
 set -o pipefail
 set -o nounset
 
-[[ -d "$PWD"/download ]] || mkdir "$PWD"/download
-[[ -d "$PWD"/sstate ]] || mkdir "$PWD"/sstate
+YOCTO_TARGET_ARCH="x86_64"
 
 YOCTO_USER="yocto"
 YOCTO_WORKDIR="/opt/${YOCTO_USER}"
+
+[[ -d "$PWD"/download ]] || mkdir "$PWD"/download
+[[ -d "$PWD"/sstate ]] || mkdir "$PWD"/sstate
 
 sudo chmod -R 775 "${PWD}"/{download,sstate}
 
@@ -22,7 +24,9 @@ podman run \
   -v "${PWD}"/dev:"${YOCTO_WORKDIR}"/dev \
   -v "${PWD}"/download:"${YOCTO_WORKDIR}"/download \
   -v "${PWD}"/sstate:"${YOCTO_WORKDIR}"/sstate \
+  --env YOCTO_TARGET_ARCH="${YOCTO_TARGET_ARCH}" \
   --env TEMPLATECONF="${YOCTO_WORKDIR}"/meta-protos/conf/templates \
+  --env "BB_ENV_EXTRAWHITE=YOCTO_TARGET_ARCH" \
   ghcr.io/jhnc-oss/yocto-image/yocto:latest \
   bash -c 'dev/init_env.sh'
 
