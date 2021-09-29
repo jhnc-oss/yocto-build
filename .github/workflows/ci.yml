@@ -32,7 +32,7 @@ jobs:
         env:
           YOCTO_TARGET_ARCH: ${{ matrix.arch }}
         run: |
-          source poky/oe-init-build-env
+          TEMPLATECONF=/opt/yocto/meta-protos/conf/templates source poky/oe-init-build-env
           bitbake -p zlib
         shell: sudo -u yocto bash --noprofile --norc -eo pipefail {0}
         working-directory: /opt/yocto
