@@ -13,7 +13,7 @@ jobs:
           - x86_64
           - x86
     container:
-      image: ghcr.io/jhnc-oss/yocto-image/yocto:latest
+      image: ghcr.io/jhnc-oss/yocto-image/yocto:34
       options: --user root
     name: "Build (${{ matrix.arch }})"
     steps:
