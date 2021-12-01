@@ -24,7 +24,7 @@ jobs:
           pip install -r requirements.txt
       - name: Synchronize Repositories
         run: |
-          repo init -u https://github.com/jhnc-oss/yocto-manifests.git -b dunfell
+          repo init -u https://github.com/jhnc-oss/yocto-manifests.git -b dunfell-23.0.12
           repo sync
         shell: sudo -u yocto bash --noprofile --norc -eo pipefail {0}
         working-directory: /opt/yocto
