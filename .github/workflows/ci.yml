@@ -34,6 +34,7 @@ jobs:
           export BB_ENV_EXTRAWHITE=YOCTO_TARGET_ARCH
           export TEMPLATECONF=/opt/yocto/meta-protos/conf/templates
           source poky/oe-init-build-env
+          bitbake-layers show-layers
           bitbake -p zlib
         shell: sudo -u yocto bash --noprofile --norc -eo pipefail {0}
         working-directory: /opt/yocto
