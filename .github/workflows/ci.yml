@@ -35,7 +35,7 @@ jobs:
           export TEMPLATECONF=/opt/yocto/meta-protos/conf/templates
           source poky/oe-init-build-env
           bitbake-layers show-layers
-          bitbake -p zlib
+          bitbake -n world
         shell: sudo -u yocto bash --noprofile --norc -eo pipefail {0}
         working-directory: /opt/yocto
 
