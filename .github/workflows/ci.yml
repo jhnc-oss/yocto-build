@@ -3,6 +3,8 @@ name: ci
 on:
   push:
   pull_request:
+  schedule:
+    - cron: '0 4 * * */2'
 
 jobs:
   build_linux:
@@ -35,7 +37,10 @@ jobs:
           export TEMPLATECONF=/opt/yocto/meta-protos/conf/templates
           source poky/oe-init-build-env
           bitbake-layers show-layers
-          bitbake -n world
+          bitbake -p zlib
+          if [[ ${{ github.event_name }} == 'schedule' ]]; then
+            bitbake -n world
+          fi
         shell: sudo -u yocto bash --noprofile --norc -eo pipefail {0}
         working-directory: /opt/yocto
 
