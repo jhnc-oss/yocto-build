@@ -14,7 +14,7 @@ cat > "$HOME/.gitconfig" <<EOF
   email = "yocto@localhost"
 EOF
 
-pip install --user gitrepo
+pip install --user -U gitrepo
 
 repo init \
   --manifest-url $MANIFEST_URL \
