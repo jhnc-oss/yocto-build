@@ -23,7 +23,6 @@ repo init \
   --manifest-branch $MANIFEST_BRANCH
 
 repo sync \
-  --verbose \
   --jobs="$(grep -c ^proc /proc/cpuinfo)" \
   --fetch-submodules \
   --current-branch \
