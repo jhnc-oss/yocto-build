@@ -4,17 +4,6 @@ set -o errexit
 
 MANIFEST_BRANCH="dunfell-23.0.13"
 MANIFEST_URL="https://github.com/jhnc-oss/yocto-manifests.git"
-PATH="$HOME/.local/bin:$PATH"
-
-cat > "$HOME/.gitconfig" <<EOF
-[color]
-  ui = "always"
-[user]
-  name = "yocto"
-  email = "yocto@localhost"
-EOF
-
-pip install --user -U gitrepo
 
 repo init \
   --manifest-url $MANIFEST_URL \
@@ -31,4 +20,3 @@ repo sync \
 source poky/oe-init-build-env
 
 exec /bin/bash
-
