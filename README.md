@@ -72,3 +72,47 @@ In this case, you have to reset your database, e.g. by running:
 ```
 
 For further details please refer to containers-storage.conf(5).
+
+## Building and running the SDK (currently limited to milestone 17)
+
+Start with bootstrapping the container as usual:
+```sh
+$ git clone https://github.com/jhnc-oss/yocto-build.git
+$ cd yocto-build
+$ ./dev/bootstrap.sh <milestone>
+```
+
+Build and populate the SDK by running:
+```sh
+$ bitbake protos-core-image-dev -c populate_sdk
+```
+
+The resulting SDK, which in our case is a SDK installer for a 64-bit development host system
+(Fedora Core >= 34 recommended) and a i586-tuned target architecture should be copied to the
+development host system:
+```sh
+$ ls tmp/deploy/sdk/tmp/deploy/sdk/protos-glibc-x86_64-protos-core-image-dev-i586-genericx86-toolchain-3.1.16.sh
+```
+
+Install the SDK on your development host system by running the self-extracting shell scripts:
+```sh
+$ ~/Downloads/sdk/protos-glibc-x86_64-protos-core-image-dev-i586-genericx86-toolchain-3.1.16.sh
+XXX Output from script goes here XXX
+XXX Output from script goes here XXX
+XXX Output from script goes here XXX
+XXX Output from script goes here XXX
+XXX Output from script goes here XXX
+XXX Output from script goes here XXX
+XXX Output from script goes here XXX
+```
+
+Once the SDK has been installed you must run SDK's setup script
+```sh
+source /opt/<path>/<to>/<env-setup-script>
+```
+
+## Using the SDK to compile an application (xeyes example goes here):
+Start with bootstrapping the container as usual:
+```sh
+XXX add steps to build xeyes from source using SDK XXX
+```
