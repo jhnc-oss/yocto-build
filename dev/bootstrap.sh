@@ -4,8 +4,8 @@ set -o errexit
 set -o pipefail
 set -o nounset
 
-MANIFEST_BRANCH="${1:-main}"
-YOCTO_TARGET_ARCH="x86_64"
+MANIFEST_BRANCH="${1:-MS16}"
+YOCTO_TARGET_ARCH="x86"
 
 YOCTO_USER="yocto"
 YOCTO_WORKDIR="/opt/${YOCTO_USER}"
