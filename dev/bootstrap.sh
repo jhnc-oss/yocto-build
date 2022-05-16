@@ -4,8 +4,8 @@ set -o errexit
 set -o pipefail
 set -o nounset
 
-MANIFEST_BRANCH="${1:-main}"
-YOCTO_TARGET_ARCH="x86_64"
+MANIFEST_BRANCH="${1:-MS18}"
+YOCTO_TARGET_ARCH="x86"
 
 YOCTO_GID="4040"
 YOCTO_UID="2000"

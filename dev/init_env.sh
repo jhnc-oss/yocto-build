@@ -2,7 +2,7 @@
 
 set -o errexit
 
-MANIFEST_BRANCH="${1:-main}"
+MANIFEST_BRANCH="${1:-MS18}"
 MANIFEST_URL="https://github.com/jhnc-oss/yocto-manifests.git"
 
 repo init \
