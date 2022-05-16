@@ -23,7 +23,7 @@ jobs:
       - name: Synchronize Repositories
         run: |
           PATH="${HOME}/.local/bin:${PATH}"
-          repo init -u https://github.com/jhnc-oss/yocto-manifests.git -b main
+          repo init -u https://github.com/jhnc-oss/yocto-manifests.git -b MS16
           repo sync
         shell: sudo -u yocto bash --noprofile --norc -eo pipefail {0}
         working-directory: /opt/yocto
