@@ -2,7 +2,7 @@
 
 set -o errexit
 
-MANIFEST_BRANCH="dunfell-23.0.15"
+MANIFEST_BRANCH="dunfell-23.0.17"
 MANIFEST_URL="https://github.com/jhnc-oss/yocto-manifests.git"
 PATH="$HOME/.local/bin:$PATH"
 
