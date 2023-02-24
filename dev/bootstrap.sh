@@ -32,9 +32,9 @@ podman run \
   --uidmap 0:1:${YOCTO_UID} \
   --user "${YOCTO_USER}:${YOCTO_USER}" \
   --workdir "${YOCTO_WORKDIR}" \
-  -v "${PWD}"/dev:"${YOCTO_WORKDIR}"/dev \
-  -v "${PWD}"/download:"${YOCTO_WORKDIR}"/download \
-  -v "${PWD}"/sstate:"${YOCTO_WORKDIR}"/sstate \
+  -v "${PWD}"/dev:"${YOCTO_WORKDIR}"/dev:Z \
+  -v "${PWD}"/download:"${YOCTO_WORKDIR}"/download:Z \
+  -v "${PWD}"/sstate:"${YOCTO_WORKDIR}"/sstate:Z \
   --env YOCTO_TARGET_ARCH="${YOCTO_TARGET_ARCH}" \
   --env TEMPLATECONF="${YOCTO_WORKDIR}"/protos/conf/templates \
   --env "BB_ENV_EXTRAWHITE=YOCTO_TARGET_ARCH" \
