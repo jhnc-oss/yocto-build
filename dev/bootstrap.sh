@@ -37,6 +37,6 @@ podman run \
   -v "${PWD}"/sstate:"${YOCTO_WORKDIR}"/sstate:Z \
   --env YOCTO_TARGET_ARCH="${YOCTO_TARGET_ARCH}" \
   --env TEMPLATECONF="${YOCTO_WORKDIR}"/protos/conf/templates \
-  --env "BB_ENV_EXTRAWHITE=YOCTO_TARGET_ARCH" \
+  --env "BB_ENV_PASSTHROUGH_ADDITIONS=YOCTO_TARGET_ARCH" \
   ghcr.io/jhnc-oss/yocto-image/yocto:36 \
   bash -c "dev/init_env.sh ${MANIFEST_BRANCH}"
