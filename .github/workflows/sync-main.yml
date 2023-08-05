@@ -1,0 +1,19 @@
+name: sync-main
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  sync_to_lts:
+    runs-on: ubuntu-latest
+    name: "Sync 'main' to lts branch"
+    steps:
+      - uses: jojomatik/sync-branch@v1
+        with:
+          source: "main"
+          target: "kirkstone"
+          strategy: "fail"
