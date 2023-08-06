@@ -23,7 +23,6 @@ sudo useradd yocto -g 4040
 ```
 
 ## Bootstrapping the Yocto Build Container
-
 Run the following commands to set up the build container environment:
 ```sh
 $ git clone https://github.com/jhnc-oss/yocto-build.git
@@ -72,3 +71,11 @@ In this case, you have to reset your database, e.g. by running:
 ```
 
 For further details please refer to containers-storage.conf(5).
+
+
+## Available Versions
+
+| Yocto Release Branch | Status | Note |
+|:--------------------:|:------:|------|
+| **`kirkstone`**      | :heavy_check_mark: LTS | :arrows_clockwise: Synced from `main` — *do not contribute directly* |
+| **`dunfell`**        | :heavy_check_mark: LTS | |
