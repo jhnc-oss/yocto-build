@@ -2,7 +2,7 @@
 
 set -o errexit
 
-MANIFEST_BRANCH="${1:-kirkstone}"
+MANIFEST_BRANCH="${1:-h5b_qt6_dunfell}"
 MANIFEST_URL="https://github.com/jhnc-oss/yocto-manifests.git"
 
 repo init \
