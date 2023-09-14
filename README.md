@@ -9,18 +9,8 @@ Ensure that you have installed the following prerequisites on your host machine:
 * containerd
 * podman
 
-The build container expects the run user's primary group to be 4040 in order
-to accomplish write access for mapped directories (DL_DIR and SSTATE_DIR)
-to outlive container termination.
-Therefore, change your run user's primary group accordingly:
-```sh
-sudo usermod -g 4040 $(whoami)
-```
-Though, you will be better equipped to create a dedicated run user with
-primary group id set to 4040, e.g.:
-```sh
-sudo useradd yocto -g 4040
-```
+Should permission problems occure with the file mappings `/etc/subuid` and `/etc/subgid` have to be edited.
+
 
 ## Bootstrapping the Yocto Build Container
 Run the following commands to set up the build container environment:
