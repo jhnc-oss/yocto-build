@@ -7,8 +7,8 @@ set -o nounset
 MANIFEST_BRANCH="${1:-dunfell}"
 YOCTO_TARGET_ARCH="x86_64"
 
-YOCTO_GID="4040"
-YOCTO_UID="2000"
+YOCTO_GID="1000"
+YOCTO_UID="1000"
 YOCTO_USER="yocto"
 YOCTO_WORKDIR="/opt/${YOCTO_USER}"
 
@@ -38,5 +38,5 @@ podman run \
   --env YOCTO_TARGET_ARCH="${YOCTO_TARGET_ARCH}" \
   --env TEMPLATECONF="${YOCTO_WORKDIR}"/protos/conf/templates \
   --env "BB_ENV_EXTRAWHITE=YOCTO_TARGET_ARCH" \
-  ghcr.io/jhnc-oss/yocto-image/yocto:36 \
+  ghcr.io/jhnc-oss/yocto-image/yocto:37 \
   bash -c "dev/init_env.sh ${MANIFEST_BRANCH}"
