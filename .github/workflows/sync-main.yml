@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     name: "Sync 'main' to lts branch"
     steps:
-      - uses: jojomatik/sync-branch@v1
+      - uses: jojomatik/sync-branch@v2
         with:
           source: "main"
           target: "kirkstone"
