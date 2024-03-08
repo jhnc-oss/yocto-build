@@ -15,8 +15,6 @@ YOCTO_WORKDIR="/opt/${YOCTO_USER}"
 [[ -d "$PWD"/download ]] || mkdir "$PWD"/download
 [[ -d "$PWD"/sstate ]] || mkdir "$PWD"/sstate
 
-sudo chmod -R 775 "${PWD}"/{download,sstate}
-
 subgidSize=$(( $(podman info --format "{{ range .Host.IDMappings.GIDMap }}+{{.Size }}{{end }}" ) - 1 ))
 subuidSize=$(( $(podman info --format "{{ range .Host.IDMappings.UIDMap }}+{{.Size }}{{end }}" ) - 1 ))
 
