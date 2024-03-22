@@ -13,7 +13,6 @@ jobs:
       matrix:
         arch:
           - x86_64
-          - x86
     container:
       image: ghcr.io/jhnc-oss/yocto-image/yocto:38
       options: --user root
