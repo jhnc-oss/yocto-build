@@ -67,5 +67,6 @@ For further details please refer to containers-storage.conf(5).
 
 | Yocto Release Branch | Status | Note |
 |:--------------------:|:------:|------|
+| **`scarthgap`**      | :heavy_check_mark: LTS | |
 | **`kirkstone`**      | :heavy_check_mark: LTS | :arrows_clockwise: Synced from `main` — *do not contribute directly* |
 | **`dunfell`**        | :heavy_check_mark: LTS | |
