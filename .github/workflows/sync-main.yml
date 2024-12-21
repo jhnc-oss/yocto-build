@@ -15,5 +15,5 @@ jobs:
       - uses: jojomatik/sync-branch@v2
         with:
           source: "main"
-          target: "kirkstone"
+          target: "scarthgap"
           strategy: "fail"
