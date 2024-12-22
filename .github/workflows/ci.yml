@@ -30,7 +30,7 @@ jobs:
         run: |
           export YOCTO_TARGET_ARCH=${{ matrix.arch }}
           export BB_ENV_PASSTHROUGH_ADDITIONS=YOCTO_TARGET_ARCH
-          export TEMPLATECONF=/opt/yocto/protos/conf/templates
+          export TEMPLATECONF=/opt/yocto/protos/meta-protos/conf/templates/default
           source poky/oe-init-build-env
           bitbake-layers show-layers
           bitbake -p zlib
