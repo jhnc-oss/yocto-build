@@ -34,9 +34,8 @@ jobs:
           source poky/oe-init-build-env
           bitbake-layers show-layers
           bitbake -p zlib
-          # disabled due to #69; 'world' is broken at the moment
           #if [[ ${{ github.event_name }} == 'schedule' ]]; then
-          #  bitbake -n world
+          bitbake -n world
           #fi
         shell: sudo -u yocto bash --noprofile --norc -eo pipefail {0}
         working-directory: /opt/yocto
