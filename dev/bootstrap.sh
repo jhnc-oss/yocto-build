@@ -36,5 +36,5 @@ podman run \
   --env YOCTO_TARGET_ARCH="${YOCTO_TARGET_ARCH}" \
   --env TEMPLATECONF="${YOCTO_WORKDIR}"/protos/meta-protos/conf/templates/default \
   --env "BB_ENV_PASSTHROUGH_ADDITIONS=YOCTO_TARGET_ARCH" \
-  ghcr.io/jhnc-oss/yocto-image/yocto:38 \
+  ghcr.io/jhnc-oss/yocto-image/yocto:40 \
   bash -c "dev/init_env.sh ${MANIFEST_BRANCH}"
