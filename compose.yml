@@ -1,0 +1,14 @@
+name: yocto-build
+
+services:
+  yocto-build:
+    image: ghcr.io/jhnc-oss/yocto-image/yocto:40
+    restart: "no"
+    pull_policy: always
+    command: echo "todo"
+
+    environment:
+      - YOCTO_TARGET_ARCH=x86_64
+      - BB_ENV_PASSTHROUGH_ADDITIONS=YOCTO_TARGET_ARCH
+      - TEMPLATECONF=/opt/yocto/protos/meta-protos/conf/templates/default
+
