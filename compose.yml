@@ -21,10 +21,11 @@ services:
       - ./download:/opt/yocto/download:U,Z
       - ./sstate:/opt/yocto/sstate:U,Z
 
-    yocto-ci:
-      extends: yocto-build
-      command:
-        - |
-          source ./dev/init_env.sh
-          bitbake-layers show-layers
-          bitbake -p zlib
+
+  yocto-ci:
+    extends: yocto-build
+    command:
+      - |
+        source ./dev/init_env.sh
+        bitbake-layers show-layers
+        bitbake -p zlib
