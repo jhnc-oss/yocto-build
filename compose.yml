@@ -1,14 +1,30 @@
 name: yocto-build
 
+x-podman:
+  in_pod: false
+
 services:
   yocto-build:
     image: ghcr.io/jhnc-oss/yocto-image/yocto:40
     restart: "no"
     pull_policy: always
-    command: echo "todo"
+    entrypoint: ["/bin/bash", "-c"]
+    userns_mode: keep-id
 
     environment:
       - YOCTO_TARGET_ARCH=x86_64
       - BB_ENV_PASSTHROUGH_ADDITIONS=YOCTO_TARGET_ARCH
       - TEMPLATECONF=/opt/yocto/protos/meta-protos/conf/templates/default
 
+    volumes:
+      - ./dev:/opt/yocto/dev:U,Z
+      - ./download:/opt/yocto/download:U,Z
+      - ./sstate:/opt/yocto/sstate:U,Z
+
+    yocto-ci:
+      extends: yocto-build
+      command:
+        - |
+          source ./dev/init_env.sh
+          bitbake-layers show-layers
+          bitbake -p zlib
