@@ -4,7 +4,7 @@ set -o errexit
 set -o pipefail
 set -o nounset
 
-MANIFEST_BRANCH="${1:-scarthgap}"
+MANIFEST_BRANCH="${1:-wrynose}"
 YOCTO_TARGET_ARCH="x86_64"
 
 YOCTO_GID="1000"
