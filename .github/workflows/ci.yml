@@ -7,7 +7,7 @@ on:
     - cron: '0 4 * * */2'
 
 permissions:
-  contents: read
+  contents: write
   pull-requests: read
 
 jobs:
@@ -30,17 +30,56 @@ jobs:
           repo sync
         shell: sudo -u yocto bash --noprofile --norc -eo pipefail {0}
         working-directory: /opt/yocto
+
+      - name: Install gh and jq
+        run: |
+          sudo dnf install -y dnf5-plugins jq
+          sudo dnf config-manager addrepo --from-repofile=https://cli.github.com/packages/rpm/gh-cli.repo
+          sudo dnf install -y gh --repo gh-cli
+        shell: sudo -u yocto bash --noprofile --norc -eo pipefail {0}
+        working-directory: /opt/yocto
+
       - name: Build
         run: |
           export YOCTO_TARGET_ARCH=${{ matrix.arch }}
           export BB_ENV_PASSTHROUGH_ADDITIONS=YOCTO_TARGET_ARCH
           export TEMPLATECONF=/opt/yocto/protos/meta-protos/conf/templates/default
+          echo 'INHERIT += "cve-check"' >> /opt/yocto/protos/meta-protos/conf/templates/default/local.conf.sample
           source poky/oe-init-build-env
-          bitbake-layers show-layers
-          bitbake -p zlib
-          # disabled due to #69; 'world' is broken at the moment
-          #if [[ ${{ github.event_name }} == 'schedule' ]]; then
-          #  bitbake -n world
-          #fi
+          bitbake openssl --runall=fetch
         shell: sudo -u yocto bash --noprofile --norc -eo pipefail {0}
         working-directory: /opt/yocto
+
+      - name: Generate nvdcve label
+        id: date
+        run: echo "today=$(date -u +'%Y-%m-%d-%H-%MZ')" >> "$GITHUB_OUTPUT"
+
+      - name: Upload CVE DB artifact
+        uses: actions/upload-artifact@v6
+        with:
+          name: cvedb-${{ steps.date.outputs.today }}
+          path: /opt/yocto/download/CVE_CHECK/nvdcve_2-2.db
+
+      - name: Cleanup old artifacts (keep only 3)
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          artifacts=$(gh api repos/${{ github.repository }}/actions/artifacts \
+            --jq '.artifacts | sort_by(.created_at) | reverse')
+
+          count=$(echo "$artifacts" | jq length)
+
+          if [ "$count" -gt 3 ]; then
+            echo "$artifacts" \
+              | jq -r ".[$((3)):] | .[].id" \
+              | while read id; do
+                  echo "Deleting artifact ID: $id"
+                  gh api \
+                    --method DELETE \
+                    -H "Accept: application/vnd.github+json" \
+                    -H "X-GitHub-Api-Version: 2026-03-10" \
+                    /repos/${{ github.repository }}/actions/artifacts/$id
+                done
+          else
+            echo "No cleanup needed: only $count artifact(s) found."
+          fi
