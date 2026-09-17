@@ -2,14 +2,14 @@
 
 set -o errexit
 
-MANIFEST_BRANCH="${1:-scarthgap}"
+MANIFEST_BRANCH="${1:-6.0.3}"
 MANIFEST_URL="https://github.com/jhnc-oss/yocto-manifests.git"
 
 repo init \
   --manifest-url $MANIFEST_URL \
   --no-clone-bundle \
   --depth=1 \
-  --manifest-branch $MANIFEST_BRANCH
+  --manifest-branch "$MANIFEST_BRANCH"
 
 repo sync \
   --jobs="$(grep -c ^proc /proc/cpuinfo)" \
