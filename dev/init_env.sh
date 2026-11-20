@@ -17,6 +17,6 @@ repo sync \
   --current-branch \
   --no-clone-bundle
 
-source poky/oe-init-build-env
+source openembedded-core/oe-init-build-env
 
 exec /bin/bash
