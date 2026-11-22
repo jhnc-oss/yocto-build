@@ -2,7 +2,7 @@
 
 set -o errexit
 
-MANIFEST_BRANCH="${1:-scarthgap}"
+MANIFEST_BRANCH="${1:-wrynose}"
 MANIFEST_URL="https://github.com/jhnc-oss/yocto-manifests.git"
 
 repo init \
